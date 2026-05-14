@@ -1,4 +1,5 @@
 return {
+  { "<leader>a", group = "AI locale" },
   { "<leader>b", group = "database" },
   { "<leader>c", group = "codice / critica" },
   { "<leader>d", group = "debug" },

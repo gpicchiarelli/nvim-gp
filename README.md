@@ -68,6 +68,11 @@ Terminale consigliato: Windows Terminal con PowerShell 7. Per un’esperienza UN
 - `:Sistema`
 - `:Risorse`
 - `:Rete`
+- `:AIStato`
+- `:AIContesto`
+- `:AIPolicy`
+- `:AIPromptReview`
+- `:AIPromptPerformance`
 - `:PerlTidyFile`
 - `:PerlPodPreview`
 - `:ApriDatabase`
@@ -105,6 +110,18 @@ Terminale consigliato: Windows Terminal con PowerShell 7. Per un’esperienza UN
 - Backend: database explorer/query runner, REST client `.http`, task runner, Make/CMake, terminale integrato.
 - Operativita: undo tree, yank history, sessioni, tmux, health-check, backup, update, profiling startup.
 - Telemetria locale: host, OS, CPU/load, RAM, rete/IP e uptime in dashboard/statusline/pannello `:Sistema`.
+- AI-friendly: snapshot locale `:AIContesto`, prompt pack, policy esplicita e nessun provider remoto abilitato di default.
+
+## AI-friendly
+
+Nvim GP e predisposto per lavorare con agenti AI in modo performante e controllato:
+
+- `SPAZIO a c`: genera `.ai/context.md`
+- `SPAZIO a p`: apre policy AI locale
+- `SPAZIO a r`: prompt review
+- `SPAZIO a P`: prompt performance
+
+Il contesto AI usa allowlist, budget byte e ignore list per evitare cache, log, dump e segreti. Vedi [docs/AI_WORKFLOW.md](/Users/gpicchiarelli/Documents/nvim-gp/docs/AI_WORKFLOW.md).
 
 ## tmux
 

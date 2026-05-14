@@ -2,8 +2,13 @@ local map = vim.keymap.set
 local opts = { silent = true }
 local ide = require("ide.actions")
 local telemetry = require("utils.telemetry")
+local ai_context = require("ai.context")
 
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", vim.tbl_extend("force", opts, { desc = "Cerca file" }))
+map("n", "<leader>ac", ai_context.write, vim.tbl_extend("force", opts, { desc = "AI contesto" }))
+map("n", "<leader>ap", ai_context.policy_buffer, vim.tbl_extend("force", opts, { desc = "AI policy" }))
+map("n", "<leader>ar", function() ai_context.prompt_buffer("review") end, vim.tbl_extend("force", opts, { desc = "AI prompt review" }))
+map("n", "<leader>aP", function() ai_context.prompt_buffer("performance") end, vim.tbl_extend("force", opts, { desc = "AI prompt performance" }))
 map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", vim.tbl_extend("force", opts, { desc = "File recenti" }))
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", vim.tbl_extend("force", opts, { desc = "Help" }))
 map("n", "<leader>gg", "<cmd>Telescope live_grep<cr>", vim.tbl_extend("force", opts, { desc = "Cerca testo" }))

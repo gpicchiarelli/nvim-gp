@@ -7,3 +7,4 @@ startup.log
 *.backup.*
 local/
 lazy-lock.json
+.ai/context.md

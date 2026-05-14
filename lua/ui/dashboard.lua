@@ -17,6 +17,7 @@ function M.setup()
     dashboard.button("SPC p p", "󰉋  Apri progetto", ":Neotree filesystem reveal left<CR>"),
     dashboard.button("SPC b b", "  Apri database", ":DBUI<CR>"),
     dashboard.button("SPC t t", "󰙨  Esegui test Perl", ":PerlProveFile<CR>"),
+    dashboard.button("SPC a c", "󰚩  Genera contesto AI", ":AIContesto<CR>"),
     dashboard.button("SPC s i", "󰍛  Sistema", ":Sistema<CR>"),
     dashboard.button("SPC h s", "󰒓  Salute ambiente", ":Salute<CR>"),
     dashboard.button("q", "󰩈  Esci", ":qa<CR>"),

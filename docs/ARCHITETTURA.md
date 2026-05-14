@@ -13,7 +13,8 @@ Il target primario resta macOS Apple Silicon con MacPorts. Debian e Windows 11 s
 5. Superfici IDE complete: outline, todo/audit, refactoring, REST client, task runner, undo tree, yank history, jump strutturale.
 6. Operativita: script MacPorts, Debian apt, Windows winget/PowerShell, health-check, diagnosi, backup, startup profiling.
 7. Osservabilita locale: dashboard e statusline con host, OS, CPU/load, RAM, rete/IP e uptime.
-8. Futuro: modulo `workspace/` per override locali e modulo AI-ready senza dipendenze esterne obbligatorie.
+8. AI-friendly: contesto locale selettivo, prompt pack, policy agenti e nessun provider remoto caricato di default.
+9. Futuro: integrazioni AI opzionali tramite moduli isolati e lazy-loaded.
 
 ## Struttura
 
@@ -26,6 +27,7 @@ lua/dap         debugger LLDB
 lua/database    dadbod e helper DBA
 lua/perl        workflow Perl professionali
 lua/ide         azioni IDE trasversali
+lua/ai          workflow AI-friendly locale
 lua/languages   treesitter, formatter, lint
 lua/keymaps     leader SPACE e which-key italiano
 lua/commands    comandi italiani
@@ -64,6 +66,14 @@ tmux            profilo tmux
 - I dettagli rumorosi stanno in `:Sistema`, non sempre a schermo.
 - I comandi italiani sono la superficie primaria: `:Sistema`, `:Risorse`, `:Rete`, `:Salute`.
 - I gruppi `SPAZIO` restano mnemonici: `s` per simboli/sistema, `t` per test/task, `b` per database, `c` per codice.
+
+## AI-friendly architecture
+
+- `lua/ai/context.lua` genera snapshot contestuali on-demand.
+- `.aiignore` e `.gitignore` impediscono di trascinare cache, log, dump e segreti.
+- `AGENTS.md` definisce regole operative per agenti.
+- `docs/AI_WORKFLOW.md` documenta workflow e prestazioni.
+- Nessun plugin AI remoto e installato o caricato di default: eventuali provider futuri devono vivere in moduli separati, lazy-loaded e opt-in.
 
 ## Matrice piattaforme
 
