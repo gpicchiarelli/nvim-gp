@@ -1,0 +1,18 @@
+return {
+  { "<leader>b", group = "database" },
+  { "<leader>c", group = "codice / critica" },
+  { "<leader>d", group = "debug" },
+  { "<leader>f", group = "file" },
+  { "<leader>g", group = "grep / git" },
+  { "<leader>h", group = "help / documentazione" },
+  { "<leader>l", group = "LSP" },
+  { "<leader>m", group = "marcatori" },
+  { "<leader>p", group = "progetto" },
+  { "<leader>q", group = "quickfix" },
+  { "<leader>r", group = "refactor / rest / registro" },
+  { "<leader>s", group = "simboli / ricerca" },
+  { "<leader>t", group = "test" },
+  { "<leader>w", group = "workspace" },
+  { "<leader>x", group = "diagnostica" },
+  { "<leader>z", group = "tmux / sessione" },
+}

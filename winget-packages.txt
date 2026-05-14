@@ -1,0 +1,16 @@
+Neovim.Neovim
+Git.Git
+BurntSushi.ripgrep.MSVC
+sharkdp.fd
+OpenJS.NodeJS.LTS
+Kitware.CMake
+Ninja-build.Ninja
+LLVM.LLVM
+PostgreSQL.PostgreSQL
+MariaDB.Server
+SQLite.SQLite
+Perl.StrawberryPerl
+PHP.PHP
+Composer.Composer
+Microsoft.PowerShell
+koalaman.shellcheck

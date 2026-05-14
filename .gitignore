@@ -1,0 +1,9 @@
+.DS_Store
+nvim.log
+startup.log
+.cache/
+.data/
+.state/
+*.backup.*
+local/
+lazy-lock.json
