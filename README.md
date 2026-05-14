@@ -3,6 +3,7 @@
 > Cockpit Neovim professionale per Perl, PostgreSQL, CLIPS, backend/security engineering e workflow AI-friendly.
 
 [![License: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-2f6f73.svg)](LICENSE)
+[![CI](https://github.com/gpicchiarelli/nvim-gp/actions/workflows/ci.yml/badge.svg)](https://github.com/gpicchiarelli/nvim-gp/actions/workflows/ci.yml)
 [![Neovim](https://img.shields.io/badge/Neovim-terminal--native-57a143.svg)](init.lua)
 [![Perl First](https://img.shields.io/badge/Perl-first-6b4fbb.svg)](lua/perl/toolchain.lua)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-first-31648c.svg)](lua/database/config.lua)
@@ -38,7 +39,8 @@ Nvim GP non e una config “carina”. E una distribuzione Neovim pensata come w
 ### macOS Apple Silicon + MacPorts
 
 ```zsh
-cd /Users/gpicchiarelli/Documents/nvim-gp
+git clone https://github.com/gpicchiarelli/nvim-gp.git
+cd nvim-gp
 ./scripts/bootstrap_macports.sh
 ./scripts/install.sh
 nvim
@@ -47,7 +49,8 @@ nvim
 ### Debian
 
 ```bash
-cd /Users/gpicchiarelli/Documents/nvim-gp
+git clone https://github.com/gpicchiarelli/nvim-gp.git
+cd nvim-gp
 ./scripts/bootstrap_debian.sh
 ./scripts/install.sh
 nvim
@@ -169,7 +172,7 @@ oppure:
 export NVIM_GP_CLIPS_XS_MODULE='Nome::Modulo::XS'
 ```
 
-Guida completa: [docs/CLIPS.md](/Users/gpicchiarelli/Documents/nvim-gp/docs/CLIPS.md)
+Guida completa: [docs/CLIPS.md](docs/CLIPS.md)
 
 ## AI-Friendly
 
@@ -194,7 +197,7 @@ Regole chiave:
 - `.aiignore` per escludere cache, dump, log e materiale sensibile
 - patch piccole, testabili, committabili
 
-Guida completa: [docs/AI_WORKFLOW.md](/Users/gpicchiarelli/Documents/nvim-gp/docs/AI_WORKFLOW.md)
+Guida completa: [docs/AI_WORKFLOW.md](docs/AI_WORKFLOW.md)
 
 ## Osservabilita
 
@@ -211,7 +214,7 @@ La UI espone dati sistema senza diventare rumorosa:
 macOS e Debian:
 
 ```zsh
-ln -sfn /Users/gpicchiarelli/Documents/nvim-gp/tmux/tmux.conf ~/.tmux.conf
+ln -sfn "$PWD/tmux/tmux.conf" ~/.tmux.conf
 tmux new -A -s nvim-gp
 ```
 
@@ -221,6 +224,7 @@ Windows 11 nativo non include tmux: usare Windows Terminal tabs/panes oppure WSL
 
 ```zsh
 make health
+make validate
 make update
 make backup
 make profile
@@ -245,9 +249,11 @@ docs            architettura, AI, CLIPS
 
 ## Documentazione
 
-- [Architettura](/Users/gpicchiarelli/Documents/nvim-gp/docs/ARCHITETTURA.md)
-- [AI workflow](/Users/gpicchiarelli/Documents/nvim-gp/docs/AI_WORKFLOW.md)
-- [CLIPS](/Users/gpicchiarelli/Documents/nvim-gp/docs/CLIPS.md)
+- [Architettura](docs/ARCHITETTURA.md)
+- [AI workflow](docs/AI_WORKFLOW.md)
+- [CLIPS](docs/CLIPS.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security](SECURITY.md)
 
 ## Licenza
 

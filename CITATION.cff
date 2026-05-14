@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Se usi Nvim GP come base o riferimento, cita questo repository."
+title: "Nvim GP"
+type: software
+authors:
+  - family-names: "Picchiarelli"
+    given-names: "Giacomo"
+license: "BSD-3-Clause"
+repository-code: "https://github.com/gpicchiarelli/nvim-gp"
+date-released: "2026-05-14"

@@ -1,0 +1,9 @@
+# Default ownership
+* @gpicchiarelli
+
+# High-signal surfaces
+/lua/perl/ @gpicchiarelli
+/lua/expert/ @gpicchiarelli
+/lua/ai/ @gpicchiarelli
+/docs/ @gpicchiarelli
+/.github/ @gpicchiarelli

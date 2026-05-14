@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discussione tecnica
+    url: https://github.com/gpicchiarelli/nvim-gp/discussions
+    about: Per idee, domande di architettura e discussioni non ancora actionable.

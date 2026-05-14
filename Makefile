@@ -1,6 +1,6 @@
 PREFIX ?= $(HOME)/.config/nvim
 
-.PHONY: install bootstrap update health diagnose backup profile
+.PHONY: install bootstrap update health diagnose backup profile validate
 .PHONY: bootstrap-debian
 
 install:
@@ -26,3 +26,6 @@ backup:
 
 profile:
 	nvim --startuptime startup.log +qa
+
+validate:
+	./scripts/validate.sh
