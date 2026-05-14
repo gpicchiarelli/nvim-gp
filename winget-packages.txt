@@ -14,3 +14,4 @@ PHP.PHP
 Composer.Composer
 Microsoft.PowerShell
 koalaman.shellcheck
+# CLIPS: installazione nativa manuale o WSL2 Debian consigliato.

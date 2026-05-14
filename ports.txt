@@ -31,6 +31,7 @@ p5.38-devel-nytprof
 p5.38-pod-simple
 p5.38-test2-suite
 p5.38-app-perlimports
+# CLIPS: MacPorts non espone sempre un port stabile; installare `clips` separatamente se necessario.
 php83
 php83-sqlite
 php83-postgresql

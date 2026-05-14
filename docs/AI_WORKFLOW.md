@@ -8,6 +8,7 @@ Nvim GP e predisposto per agenti AI locali o esterni senza rendere l'editor dipe
 - Contesto piccolo: snapshot selettivi, non dump del repository.
 - Prestazioni stabili: niente plugin AI caricati allo startup.
 - Sicurezza: `.aiignore` esclude cache, log, dump, segreti e build output.
+- CLIPS: knowledge-base sensibili, facts reali e dump di inferenza restano fuori dagli snapshot salvo scelta esplicita.
 - Workflow umano: diff, test, review e commit piccoli.
 
 ## Comandi Neovim

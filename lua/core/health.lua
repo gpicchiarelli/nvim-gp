@@ -22,6 +22,10 @@ local platform_bins = {
   windows = { "pwsh", "fd", "lldb-vscode" },
 }
 
+local optional_bins = {
+  "clips",
+}
+
 function M.required_bins()
   local bins = vim.deepcopy(common_bins)
   local extra = platform_bins.linux
@@ -49,8 +53,15 @@ end
 
 function M.report()
   local missing = M.missing_bins()
+  local optional_missing = {}
+  for _, bin in ipairs(optional_bins) do
+    if vim.fn.executable(bin) == 0 then
+      table.insert(optional_missing, bin)
+    end
+  end
   if #missing == 0 then
-    vim.notify("Ambiente Neovim UNIX: tutti gli strumenti principali sono disponibili.", vim.log.levels.INFO)
+    local suffix = #optional_missing > 0 and (" Opzionali mancanti: " .. table.concat(optional_missing, ", ")) or ""
+    vim.notify("Ambiente Neovim UNIX: tutti gli strumenti principali sono disponibili." .. suffix, vim.log.levels.INFO)
     return
   end
   vim.notify("Strumenti mancanti: " .. table.concat(missing, ", "), vim.log.levels.WARN)

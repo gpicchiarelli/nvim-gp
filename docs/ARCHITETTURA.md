@@ -11,10 +11,11 @@ Il target primario resta macOS Apple Silicon con MacPorts. Debian e Windows 11 s
 3. Database-first: vim-dadbod, PostgreSQL helpers, completamento SQL, query buffer, schema explorer.
 4. Toolchain enterprise: clangd/LLDB/CMake, PHPActor/Composer/PHPUnit, web stack essenziale, sourcekit-lsp.
 5. Superfici IDE complete: outline, todo/audit, refactoring, REST client, task runner, undo tree, yank history, jump strutturale.
-6. Operativita: script MacPorts, Debian apt, Windows winget/PowerShell, health-check, diagnosi, backup, startup profiling.
-7. Osservabilita locale: dashboard e statusline con host, OS, CPU/load, RAM, rete/IP e uptime.
-8. AI-friendly: contesto locale selettivo, prompt pack, policy agenti e nessun provider remoto caricato di default.
-9. Futuro: integrazioni AI opzionali tramite moduli isolati e lazy-loaded.
+6. Sistemi esperti: supporto CLIPS per regole, facts, agenda, REPL e run/check in quickfix.
+7. Operativita: script MacPorts, Debian apt, Windows winget/PowerShell, health-check, diagnosi, backup, startup profiling.
+8. Osservabilita locale: dashboard e statusline con host, OS, CPU/load, RAM, rete/IP e uptime.
+9. AI-friendly: contesto locale selettivo, prompt pack, policy agenti e nessun provider remoto caricato di default.
+10. Futuro: integrazioni AI opzionali tramite moduli isolati e lazy-loaded.
 
 ## Struttura
 
@@ -26,6 +27,7 @@ lua/lsp         server, completion e attach
 lua/dap         debugger LLDB
 lua/database    dadbod e helper DBA
 lua/perl        workflow Perl professionali
+lua/expert      sistemi esperti e CLIPS
 lua/ide         azioni IDE trasversali
 lua/ai          workflow AI-friendly locale
 lua/languages   treesitter, formatter, lint
@@ -55,6 +57,7 @@ tmux            profilo tmux
 - Refactoring: refactoring.nvim per estrazioni e inline dove supportato da treesitter.
 - Test e task: workflow Perl dedicato piu Overseer per Make/CMake/script di progetto.
 - Backend/API: dadbod per database e Kulala per richieste `.http` locali.
+- Sistemi esperti: CLIPS `.clp`, snippets, syntax, REPL, check/run, facts e agenda.
 - Storico operativo: undo tree, yank ring, sessioni, tmux.
 - Focus: Zen/Twilight per lettura o review lunga senza alterare la configurazione base.
 - Osservabilita: modulo `utils.telemetry` con cache leggera per non rallentare statusline e pannello `:Sistema` per dettagli.

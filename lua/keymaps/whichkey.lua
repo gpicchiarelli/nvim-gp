@@ -3,6 +3,7 @@ return {
   { "<leader>b", group = "database" },
   { "<leader>c", group = "codice / critica" },
   { "<leader>d", group = "debug" },
+  { "<leader>e", group = "sistemi esperti" },
   { "<leader>f", group = "file" },
   { "<leader>g", group = "grep / git" },
   { "<leader>h", group = "help / documentazione" },

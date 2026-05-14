@@ -39,6 +39,8 @@ local defaults = {
     "ps1",
     "txt",
     "conf",
+    "clp",
+    "clips",
     "toml",
     "json",
     "yaml",

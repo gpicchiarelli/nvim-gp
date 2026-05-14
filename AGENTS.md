@@ -25,6 +25,13 @@ nvim --headless -u NONE '+lua for _, f in ipairs(vim.fn.glob("**/*.lua", false, 
 - Test preferiti: `prove -lr t`.
 - Preferire `Test2::V0`.
 
+## CLIPS
+
+- File CLIPS: `.clp` o `.clips`.
+- Validare con `:CLIPSCheck`.
+- Per comportamento: usare `:CLIPSAgenda`, `:CLIPSFacts`, `:CLIPSEsegui`.
+- Separare regole, facts e scenari di test quando il sistema esperto cresce.
+
 ## Performance
 
 - Nessun plugin deve caricare a startup se non necessario.

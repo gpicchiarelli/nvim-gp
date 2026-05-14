@@ -6,6 +6,7 @@ return {
     "c",
     "cpp",
     "cmake",
+    "commonlisp",
     "php",
     "html",
     "css",

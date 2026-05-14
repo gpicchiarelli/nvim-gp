@@ -73,6 +73,10 @@ Terminale consigliato: Windows Terminal con PowerShell 7. Per un’esperienza UN
 - `:AIPolicy`
 - `:AIPromptReview`
 - `:AIPromptPerformance`
+- `:CLIPSConsole`
+- `:CLIPSCheck`
+- `:CLIPSEsegui`
+- `:CLIPSAgenda`
 - `:PerlTidyFile`
 - `:PerlPodPreview`
 - `:ApriDatabase`
@@ -91,6 +95,7 @@ Terminale consigliato: Windows Terminal con PowerShell 7. Per un’esperienza UN
 - `SPAZIO g`: grep/git
 - `SPAZIO b`: database
 - `SPAZIO d`: debug
+- `SPAZIO e`: sistemi esperti / CLIPS
 - `SPAZIO t`: test
 - `SPAZIO c`: codice/critic
 - `SPAZIO p`: progetto
@@ -108,6 +113,7 @@ Terminale consigliato: Windows Terminal con PowerShell 7. Per un’esperienza UN
 - Codice: LSP, completion, signature help, formatting, linting, refactoring visuale, diagnostics Trouble.
 - Perl: test, critic, tidy, imports, POD, CPAN/carton, NYTProf, regex scratch, stacktrace quickfix.
 - Backend: database explorer/query runner, REST client `.http`, task runner, Make/CMake, terminale integrato.
+- Sistemi esperti: filetype CLIPS, syntax, snippets, REPL, check, run, facts e agenda.
 - Operativita: undo tree, yank history, sessioni, tmux, health-check, backup, update, profiling startup.
 - Telemetria locale: host, OS, CPU/load, RAM, rete/IP e uptime in dashboard/statusline/pannello `:Sistema`.
 - AI-friendly: snapshot locale `:AIContesto`, prompt pack, policy esplicita e nessun provider remoto abilitato di default.
@@ -122,6 +128,19 @@ Nvim GP e predisposto per lavorare con agenti AI in modo performante e controlla
 - `SPAZIO a P`: prompt performance
 
 Il contesto AI usa allowlist, budget byte e ignore list per evitare cache, log, dump e segreti. Vedi [docs/AI_WORKFLOW.md](/Users/gpicchiarelli/Documents/nvim-gp/docs/AI_WORKFLOW.md).
+
+## CLIPS
+
+Supporto per sistemi esperti CLIPS:
+
+- `SPAZIO e c`: console
+- `SPAZIO e k`: check
+- `SPAZIO e r`: esegui
+- `SPAZIO e a`: agenda
+- `SPAZIO e f`: facts
+- `SPAZIO e s`: scratch
+
+Vedi [docs/CLIPS.md](/Users/gpicchiarelli/Documents/nvim-gp/docs/CLIPS.md).
 
 ## tmux
 

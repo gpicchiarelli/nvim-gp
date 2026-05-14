@@ -19,6 +19,7 @@ mariadb-client
 sqlite3
 freetds-bin
 perl
+clips
 cpanminus
 carton
 perlcritic
