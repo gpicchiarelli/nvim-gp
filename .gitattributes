@@ -1,0 +1,17 @@
+* text=auto eol=lf
+
+*.lua text eol=lf
+*.vim text eol=lf
+*.sh text eol=lf
+*.zsh text eol=lf
+*.ps1 text eol=crlf
+*.md text eol=lf
+*.txt text eol=lf
+*.clp text eol=lf
+*.clips text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary

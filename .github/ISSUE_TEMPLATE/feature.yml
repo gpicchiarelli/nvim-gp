@@ -1,0 +1,36 @@
+name: Feature request
+description: Proponi una capacita coerente con l'architettura.
+title: "[feature] "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: obiettivo
+    attributes:
+      label: Obiettivo
+      description: Quale workflow professionale abilita?
+    validations:
+      required: true
+  - type: dropdown
+    id: dominio
+    attributes:
+      label: Dominio
+      options:
+        - Perl
+        - PostgreSQL / database
+        - CLIPS / Perl XS
+        - AI workflow
+        - UI / UX
+        - Piattaforme
+        - Repository / CI
+    validations:
+      required: true
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Proposta tecnica
+      description: Descrivi una soluzione possibile, con tradeoff.
+  - type: textarea
+    id: vincoli
+    attributes:
+      label: Vincoli
+      description: Dipendenze, performance, sicurezza, portabilita.

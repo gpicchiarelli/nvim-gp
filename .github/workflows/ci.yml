@@ -1,0 +1,214 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install validation tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y neovim shellcheck ripgrep zsh
+
+      - name: Validate
+        run: make validate
+
+  deep-unix:
+    name: Deep validation (${{ matrix.platform }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux
+            os: ubuntu-latest
+          - platform: macos
+            os: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install deep validation tools on Linux
+        if: matrix.platform == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            neovim shellcheck ripgrep zsh git fd-find tmux jq \
+            universal-ctags cmake ninja-build clangd clang-format lldb \
+            postgresql-client mariadb-client sqlite3 freetds-bin perl \
+            cpanminus carton perltidy libperl-critic-perl \
+            libdevel-nytprof-perl libpod-simple-perl libtest2-suite-perl \
+            php-cli nodejs npm
+
+      - name: Install deep validation tools on macOS
+        if: matrix.platform == 'macos'
+        run: |
+          brew update
+          brew install neovim shellcheck ripgrep zsh fd tmux jq universal-ctags cmake ninja
+
+      - name: Static validation
+        run: make lint
+
+      - name: Phase zero smoke
+        run: make smoke
+
+      - name: Headless module tests
+        run: make test
+
+      - name: Full validate target
+        run: make validate
+
+      - name: Gate installer dry-run on Linux
+        if: matrix.platform == 'linux'
+        run: NVIM_GP_DRY_RUN=1 ./scripts/bootstrap_debian.sh
+
+      - name: Gate installer dry-run on macOS
+        if: matrix.platform == 'macos'
+        run: |
+          zsh -n ./scripts/ensure_macports.sh
+          test -x ./scripts/macos-askpass.sh
+
+      - name: Resolve plugin graph
+        run: |
+          XDG_STATE_HOME="$RUNNER_TEMP/nvim-gp-state" \
+          XDG_DATA_HOME="$RUNNER_TEMP/nvim-gp-data" \
+          XDG_CACHE_HOME="$RUNNER_TEMP/nvim-gp-cache" \
+          nvim --headless -u init.lua "+Lazy! sync" +qa
+
+      - name: Full Neovim startup
+        run: |
+          XDG_STATE_HOME="$RUNNER_TEMP/nvim-gp-state" \
+          XDG_DATA_HOME="$RUNNER_TEMP/nvim-gp-data" \
+          XDG_CACHE_HOME="$RUNNER_TEMP/nvim-gp-cache" \
+          nvim --headless -u init.lua +qa
+
+      - name: Documentation feature contracts
+        run: |
+          XDG_STATE_HOME="$RUNNER_TEMP/nvim-gp-state" \
+          XDG_DATA_HOME="$RUNNER_TEMP/nvim-gp-data" \
+          XDG_CACHE_HOME="$RUNNER_TEMP/nvim-gp-cache" \
+          NVIM_GP_PHASE0=1 \
+          nvim --headless --cmd 'set rtp+=.' -u init.lua \
+            '+lua local ok, err = pcall(dofile, "tests/test_feature_matrix.lua"); if not ok then print(err); vim.cmd("cquit") end' \
+            +qa
+
+  deep-windows:
+    name: Deep validation (windows)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Parse PowerShell scripts
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          Get-ChildItem -Path scripts -Filter *.ps1 | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref] $tokens, [ref] $errors) | Out-Null
+            if ($errors.Count -gt 0) {
+              $errors | ForEach-Object { Write-Error $_.Message }
+              throw "PowerShell parse failed: $($_.FullName)"
+            }
+          }
+
+      - name: Install configuration
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $env:LOCALAPPDATA = Join-Path $env:RUNNER_TEMP "nvim-gp-localappdata"
+          New-Item -ItemType Directory -Force -Path $env:LOCALAPPDATA | Out-Null
+          .\scripts\install_windows.ps1
+          $target = Join-Path $env:LOCALAPPDATA "nvim"
+          if (-not (Test-Path $target)) {
+            throw "Install target missing: $target"
+          }
+          $item = Get-Item $target
+          if ($item.LinkType -notin @("SymbolicLink", "Junction")) {
+            throw "Install target is not a link or junction: $($item.LinkType)"
+          }
+          $expected = (Resolve-Path ".").Path
+          $actual = (Resolve-Path $item.Target).Path
+          if ($actual -ne $expected) {
+            throw "Install target mismatch: $actual != $expected"
+          }
+
+      - name: Bootstrap gate dry-run
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $env:NVIM_GP_DRY_RUN = "1"
+          .\scripts\bootstrap_windows.ps1
+
+  install-smoke:
+    name: Install smoke (${{ matrix.platform }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux
+            os: ubuntu-latest
+          - platform: macos
+            os: macos-14
+          - platform: windows
+            os: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install zsh on Linux
+        if: matrix.platform == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zsh
+
+      - name: Install configuration on UNIX
+        if: matrix.platform != 'windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          export HOME="$RUNNER_TEMP/nvim-gp-home"
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/nvim-gp-config"
+          mkdir -p "$HOME" "$XDG_CONFIG_HOME"
+          zsh ./scripts/install.sh
+          test -L "$XDG_CONFIG_HOME/nvim"
+          test "$(readlink "$XDG_CONFIG_HOME/nvim")" = "$PWD"
+
+      - name: Install configuration on Windows
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $env:LOCALAPPDATA = Join-Path $env:RUNNER_TEMP "nvim-gp-localappdata"
+          New-Item -ItemType Directory -Force -Path $env:LOCALAPPDATA | Out-Null
+          .\scripts\install_windows.ps1
+          $target = Join-Path $env:LOCALAPPDATA "nvim"
+          if (-not (Test-Path $target)) {
+            throw "Install target missing: $target"
+          }
+          $item = Get-Item $target
+          if ($item.LinkType -notin @("SymbolicLink", "Junction")) {
+            throw "Install target is not a link or junction: $($item.LinkType)"
+          }
+          $expected = (Resolve-Path ".").Path
+          $actual = (Resolve-Path $item.Target).Path
+          if ($actual -ne $expected) {
+            throw "Install target mismatch: $actual != $expected"
+          }

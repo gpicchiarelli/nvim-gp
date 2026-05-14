@@ -1,0 +1,50 @@
+name: Bug report
+description: Segnala un comportamento errato o una regressione.
+title: "[bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazie. Tieni il report asciutto, riproducibile e senza segreti.
+  - type: textarea
+    id: descrizione
+    attributes:
+      label: Descrizione
+      description: Cosa succede?
+    validations:
+      required: true
+  - type: textarea
+    id: riproduzione
+    attributes:
+      label: Passi per riprodurre
+      placeholder: |
+        1. Apri ...
+        2. Esegui ...
+        3. Osserva ...
+    validations:
+      required: true
+  - type: textarea
+    id: atteso
+    attributes:
+      label: Comportamento atteso
+    validations:
+      required: true
+  - type: dropdown
+    id: piattaforma
+    attributes:
+      label: Piattaforma
+      options:
+        - macOS Apple Silicon + MacPorts
+        - Debian
+        - Windows 11 nativo
+        - Windows 11 + WSL2 Debian
+        - Altro
+    validations:
+      required: true
+  - type: textarea
+    id: salute
+    attributes:
+      label: Output utile
+      description: Incolla `:Salute`, `make validate` o log minimali, senza segreti.
+      render: text
