@@ -17,4 +17,10 @@ return {
     i(1, "My::Module"),
     t({ ";", "", "use v5.38;", "use strict;", "use warnings;", "", "1;", "" }),
   }),
+  s("clipsxs", {
+    t({ "use v5.38;", "use strict;", "use warnings;", "use Test2::V0;", "" }),
+    t("use "),
+    i(1, "CLIPS"),
+    t({ ";", "", "ok 1, 'CLIPS XS caricato';", "", "done_testing;" }),
+  }),
 }

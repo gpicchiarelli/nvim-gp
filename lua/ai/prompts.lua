@@ -25,4 +25,11 @@ return {
     "Cerca segreti, input non validati, shell injection, path traversal e logging sensibile.",
     "Non stampare segreti. Indica solo pattern e posizione.",
   },
+  clips = {
+    "# Prompt CLIPS / Perl XS",
+    "",
+    "Analizza il sistema esperto considerando CLIPS come runtime integrato in Perl tramite modulo XS.",
+    "Distingui regole/facts `.clp`, binding XS, lifecycle Perl, error handling e test prove/Test2.",
+    "Non assumere che il binario `clips` sia il runtime primario se il progetto usa il modulo XS.",
+  },
 }

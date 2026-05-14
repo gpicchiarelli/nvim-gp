@@ -20,6 +20,7 @@ Nvim GP e predisposto per agenti AI locali o esterni senza rendere l'editor dipe
 - `:AIPromptPerformance` prepara un prompt prestazioni.
 - `:AIPromptPerl` prepara un prompt Perl.
 - `:AIPromptSicurezza` prepara un prompt security.
+- `:AIPromptCLIPS` prepara un prompt CLIPS/Perl XS.
 
 ## Workflow consigliato
 

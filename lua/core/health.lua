@@ -26,6 +26,15 @@ local optional_bins = {
   "clips",
 }
 
+local function clips_xs_module()
+  return vim.g.nvim_gp_clips_xs_module or vim.env.NVIM_GP_CLIPS_XS_MODULE or "CLIPS"
+end
+
+local function perl_module_available(module)
+  vim.fn.system({ "perl", "-M" .. module, "-e", "1" })
+  return vim.v.shell_error == 0
+end
+
 function M.required_bins()
   local bins = vim.deepcopy(common_bins)
   local extra = platform_bins.linux
@@ -58,6 +67,10 @@ function M.report()
     if vim.fn.executable(bin) == 0 then
       table.insert(optional_missing, bin)
     end
+  end
+  local xs_module = clips_xs_module()
+  if vim.fn.executable("perl") == 1 and not perl_module_available(xs_module) then
+    table.insert(optional_missing, "Perl XS " .. xs_module)
   end
   if #missing == 0 then
     local suffix = #optional_missing > 0 and (" Opzionali mancanti: " .. table.concat(optional_missing, ", ")) or ""

@@ -10,6 +10,16 @@ local function current_file()
   return vim.fn.expand("%:p")
 end
 
+local function project_root()
+  local markers = { "cpanfile", "Makefile.PL", "dist.ini", "minil.toml", ".git" }
+  local found = vim.fs.find(markers, { upward = true, path = vim.fn.expand("%:p:h") })[1]
+  return found and vim.fs.dirname(found) or vim.loop.cwd()
+end
+
+local function xs_module()
+  return vim.g.nvim_gp_clips_xs_module or vim.env.NVIM_GP_CLIPS_XS_MODULE or "CLIPS"
+end
+
 local function shell_path(path)
   return path:gsub("\\", "\\\\"):gsub('"', '\\"')
 end
@@ -138,6 +148,58 @@ function M.agenda()
     '(agenda)',
     '(exit)',
   }) }, { title = "CLIPS agenda" })
+end
+
+function M.perl_xs_check()
+  local module = xs_module()
+  jobs.quickfix({
+    "perl",
+    "-M" .. module,
+    "-e",
+    'print "' .. module .. ' XS OK\\n"',
+  }, { cwd = project_root(), title = "Perl XS CLIPS: " .. module })
+end
+
+function M.perl_xs_version()
+  local module = xs_module()
+  jobs.quickfix({
+    "perl",
+    "-M" .. module,
+    "-e",
+    'no strict "refs"; print "' .. module .. ' "; print ${"' .. module .. '::VERSION"} // "versione non dichiarata"; print "\\n"',
+  }, { cwd = project_root(), title = "Versione Perl XS CLIPS" })
+end
+
+function M.perl_xs_perldoc()
+  local module = xs_module()
+  vim.cmd("botright split")
+  vim.cmd("terminal perldoc -m " .. vim.fn.shellescape(module))
+  vim.cmd("startinsert")
+end
+
+function M.perl_xs_tests()
+  jobs.quickfix({ "prove", "-lr", "t" }, { cwd = project_root(), title = "Test Perl/CLIPS XS" })
+end
+
+function M.perl_xs_scratch()
+  local module = xs_module()
+  vim.cmd("vnew")
+  vim.bo.filetype = "perl"
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, {
+    "use v5.38;",
+    "use strict;",
+    "use warnings;",
+    "use Test2::V0;",
+    "",
+    "use " .. module .. ";",
+    "",
+    "ok 1, '" .. module .. " caricato';",
+    "",
+    "# Impostare g:nvim_gp_clips_xs_module o NVIM_GP_CLIPS_XS_MODULE se il modulo ha un nome diverso.",
+    "# Aggiungere qui smoke test reali contro l'API XS del progetto.",
+    "",
+    "done_testing;",
+  })
 end
 
 return M

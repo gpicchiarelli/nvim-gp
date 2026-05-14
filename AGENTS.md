@@ -28,7 +28,11 @@ nvim --headless -u NONE '+lua for _, f in ipairs(vim.fn.glob("**/*.lua", false, 
 ## CLIPS
 
 - File CLIPS: `.clp` o `.clips`.
+- Ricordare che il runtime applicativo primario e il modulo Perl XS CLIPS.
+- Non assumere che il binario `clips` sia disponibile o sia il percorso principale.
 - Validare con `:CLIPSCheck`.
+- Validare il binding Perl con `:CLIPSPerlXSCheck`.
+- Test principali: `:CLIPSPerlXSTest` / `prove -lr t`.
 - Per comportamento: usare `:CLIPSAgenda`, `:CLIPSFacts`, `:CLIPSEsegui`.
 - Separare regole, facts e scenari di test quando il sistema esperto cresce.
 

@@ -11,7 +11,7 @@ Il target primario resta macOS Apple Silicon con MacPorts. Debian e Windows 11 s
 3. Database-first: vim-dadbod, PostgreSQL helpers, completamento SQL, query buffer, schema explorer.
 4. Toolchain enterprise: clangd/LLDB/CMake, PHPActor/Composer/PHPUnit, web stack essenziale, sourcekit-lsp.
 5. Superfici IDE complete: outline, todo/audit, refactoring, REST client, task runner, undo tree, yank history, jump strutturale.
-6. Sistemi esperti: supporto CLIPS per regole, facts, agenda, REPL e run/check in quickfix.
+6. Sistemi esperti: supporto CLIPS per regole, facts, agenda, REPL, run/check e binding Perl XS.
 7. Operativita: script MacPorts, Debian apt, Windows winget/PowerShell, health-check, diagnosi, backup, startup profiling.
 8. Osservabilita locale: dashboard e statusline con host, OS, CPU/load, RAM, rete/IP e uptime.
 9. AI-friendly: contesto locale selettivo, prompt pack, policy agenti e nessun provider remoto caricato di default.
@@ -57,7 +57,7 @@ tmux            profilo tmux
 - Refactoring: refactoring.nvim per estrazioni e inline dove supportato da treesitter.
 - Test e task: workflow Perl dedicato piu Overseer per Make/CMake/script di progetto.
 - Backend/API: dadbod per database e Kulala per richieste `.http` locali.
-- Sistemi esperti: CLIPS `.clp`, snippets, syntax, REPL, check/run, facts e agenda.
+- Sistemi esperti: CLIPS `.clp`, snippets, syntax, REPL, check/run, facts, agenda e workflow Perl XS/Test2.
 - Storico operativo: undo tree, yank ring, sessioni, tmux.
 - Focus: Zen/Twilight per lettura o review lunga senza alterare la configurazione base.
 - Osservabilita: modulo `utils.telemetry` con cache leggera per non rallentare statusline e pannello `:Sistema` per dettagli.
